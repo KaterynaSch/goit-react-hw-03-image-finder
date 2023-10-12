@@ -1,4 +1,4 @@
-import { LabelBtn, SearchBtn, SearchForm, SearchInput, Searchbar } from "./SearchBar.styled"
+import { SearchBtn, SearchForm, SearchInput, Searchbar } from "./SearchBar.styled"
 
 export const SearchBar = ({onSubmit}) => {
     return (
