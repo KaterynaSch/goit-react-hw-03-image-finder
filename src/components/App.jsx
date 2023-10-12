@@ -8,54 +8,61 @@ import { fetchImages } from './Api/Api';
 export class App extends Component {
 
   state = {
+    query: '',
+    page: 1,
     images: [],
     loading: false,
-    error: false,
-    value: '',
-    page: '',
+    error: false,    
   } 
-
-  // async componentDidMount() { 
-   
-  // }
+  
+ 
+  handleSubmit = evt => {   
+    evt.preventDefault();
+    
+      this.setState({ 
+        query: evt.target.elements.query.value.trim(),
+        page:1,
+        images: [], 
+      })
+    console.log(evt.target.elements.query.value);
+  };
 
   async componentDidUpdate(prevProps, prevState) { 
-    if(this.state.page !== prevState.page || prevState.images !== this.state.images){
-      localStorage.setItem('images', JSON.stringify(this.state.images));
-    }
-    const savedImages = localStorage.getItem('images');//зчитуємо з lS зображення
-    if (savedImages !== null){
-      this.setState({
-        images:JSON.parse(savedImages)
-      })
-    };  
-
-    try {
-      this.setState({
-        loading: true,
-        error: false
-      });
-      const results = await fetchImages(this.state.value);
-      this.setState ({ images: results});    
-    } catch (error) {
-      this.setState({error: true});
-    } finally {
-      this.setState({loading: false});
+    if(prevState.query !== this.state.query || prevState.page !==  this.state.page){
+    
+      try {
+        this.setState({
+          loading: true,
+          error: false
+        });
+        const { query, page } = this.state;
+        const results = await fetchImages(query, page);
+        this.setState ({ images: [...prevState.images, ...results.hits]});    
+      } catch (error) {
+        this.setState({error: true});
+      } finally {
+        this.setState({loading: false});
+      }
     }
   } 
-
-  changeInput = evt => {
-      this.setState({ value: evt.target.value })
-  };
+  handleLoadMore = () => {
+    this.setState(prevState => ({ 
+      page: prevState.page + 1
+     
+     }));
+  } 
 
 
 render() {
   const {images} = this.state;
     return (
       <MainContainer>
-      <SearchBar onSubmit= {this.changeInput}/>
-      <ImageGallery images={images}/>
-      <LoadMoreBtn loadMore={this.loadMore}/>
+      <SearchBar onSubmit= {this.handleSubmit}/>
+      {this.state.images.length > 0 && 
+      <ImageGallery images={images}/>}
+      {/* Loader...треба додати */}
+      
+      <LoadMoreBtn onLoadMore={this.handleLoadMore}/>
 
     </MainContainer>
     )

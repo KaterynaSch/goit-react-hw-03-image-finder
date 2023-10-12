@@ -1,13 +1,14 @@
 
-import { ImageGalleryItem } from "components/GalleryItem/GalleryItem.styled"
 import { ImageGalleryList } from "./ImageGallery.styled"
+import { GalleryItem } from "components/GalleryItem/GalleryItem"
 
 
 export const ImageGallery = ({images}) => {
     return(
         <ImageGalleryList >
             {images.map(item => 
-                <ImageGalleryItem key={item.id} />
+                <GalleryItem key={item.id} image={item} />
+                
             )} 
         </ImageGalleryList>
     )
