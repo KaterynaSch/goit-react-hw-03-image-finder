@@ -24,21 +24,17 @@ export const SearchForm = styled.form`
   gap: 20px;
   width: 100%;
   max-width: 600px;
-  border-radius: 4px;
-  /* background-color: #fff; */
-  /* border-radius: 3px; */
+  border-radius: 6px;  
   overflow: hidden;  
 `
 export const SearchBtn = styled.button`
-  display: inline-block;
+
   width: 100px;
   height: 28px;
   border: 0;
-  border-radius: 4px;  
-  background-size: 40%;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.6;
+  border-radius: 6px; 
+  color:  #3f51b5;    
+  opacity: 0.8;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none; 
@@ -47,27 +43,17 @@ export const SearchBtn = styled.button`
     opacity: 1; 
   }
 `
-// export const LabelBtn = styled.span`
-//   position: absolute;
-//   width: 1px;
-//   height: 1px;
-//   padding: 0;
-//   overflow: hidden;
-//   clip: rect(0, 0, 0, 0);
-//   white-space: nowrap;
-//   clip-path: inset(50%);
-//   border: 0;
-// `
+
 export const SearchInput = styled.input`
   display: inline-block;
   width: 100%;
-  height: 28px;
+  height: 30px;
   font: inherit;
   font-size: 20px;
   border: none;
   border-radius: 4px;
   outline: none;
-  padding-left: 4px;
+  padding-left: 8px;
   padding-right: 4px; 
 
   &::placeholder {
