@@ -16,12 +16,15 @@ export class App extends Component {
     totalHits: 0,
     loading: false,
     error: false,    
-  } 
-  
+  }   
  
   handleSubmit = evt => {   
     evt.preventDefault();
     
+  if (!evt.target.elements.query.value.trim()) {   
+    toast('Please fill in the search value.', { icon: '👈' });
+    return;
+  }
       this.setState({ 
         query: evt.target.elements.query.value.trim(),
         page:1,
