@@ -1,17 +1,19 @@
 import { Component } from "react";
 import {toast} from "react-hot-toast";
-import { SearchBtn, Form, SearchInput, FormOverlay } from "./SearchBar.styled"
+import { SearchBtn, Form, SearchInput, FormOverlay } from "./SearchBar.styled";
 
 export default class SearchBar extends Component {
     state = {
         inputValue: '',
         page: 1,
     };
+
     handleChangeInput = (evt) => {        
         this.setState({
             inputValue :evt.target.value.toLowerCase().trim()
         });
-    }    
+    };
+
     handleSubmit = (evt) => {
         evt.preventDefault();
         if (this.state.inputValue === '') {   
@@ -19,7 +21,7 @@ export default class SearchBar extends Component {
         return;
         }
         this.props.onSubmit(this.state.inputValue);    
-    }
+    };
      
     render() {
         const {handleSubmit, handleChangeInput} = this;

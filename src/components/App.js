@@ -17,7 +17,7 @@ export class App extends Component {
     loading: false,
     error: false, 
     loadMore: 0,     
-  } 
+  }; 
 
   handleChangeQuery = (inputValue) => {      
       this.setState({ 
@@ -74,19 +74,18 @@ export class App extends Component {
       }));
   };
 
-   render() {
+  render() {
     const {images, loading} = this.state;
  
-      return (
-        <MainContainer>
-          <SearchBar onSubmit= {this.handleChangeQuery}/>
-          {this.state.images.length > 0 && 
-          <ImageGallery images={images}/>}    
-          {loading && <Loader /> }      
-          {this.state.loadMore > 0 &&  <LoadMoreBtn onLoadMore={this.handleLoadMore}/>}
-          <Toaster position="top-right" />
-        </MainContainer>
-      )
+    return (
+      <MainContainer>
+        <SearchBar onSubmit= {this.handleChangeQuery}/>
+        {this.state.images.length > 0 && 
+        <ImageGallery images={images}/>}    
+        {loading && <Loader /> }      
+        {this.state.loadMore > 0 &&  <LoadMoreBtn onLoadMore={this.handleLoadMore}/>}
+        <Toaster position="top-right" />
+      </MainContainer>
+    )
   };
 };
-

@@ -23,4 +23,3 @@ export const GalleryModal = ({isOpen, onRequestClose, image}) => {
         </Modal> 
     )
 };
-  
